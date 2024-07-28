@@ -1,0 +1,343 @@
+[gd_scene load_steps=18 format=3 uid="uid://cok1rdbd8frt5"]
+
+[ext_resource type="Script" path="res://CanvasLayer.gd" id="1_tac5l"]
+[ext_resource type="Texture2D" uid="uid://coda3jaf3u1rd" path="res://New Piskel (1).png" id="2_ykbxr"]
+[ext_resource type="Texture2D" uid="uid://7hc80a82urya" path="res://sprites/New Piskel (8).png" id="3_tk2lj"]
+[ext_resource type="Texture2D" uid="uid://b0fns4f46w521" path="res://sprites/New Piskel (9).png" id="4_gankk"]
+[ext_resource type="Texture2D" uid="uid://uif5k5eh67g8" path="res://sprites/New Piskel (7).png" id="5_6x42r"]
+[ext_resource type="Script" path="res://wood_anim.gd" id="5_eix08"]
+[ext_resource type="Texture2D" uid="uid://cxaq1ix53i5xw" path="res://New Piskel (23).png" id="6_3lkyh"]
+[ext_resource type="Texture2D" uid="uid://citrkdi7xtlrp" path="res://New Piskel (28).png" id="6_bmwlx"]
+[ext_resource type="Texture2D" uid="uid://h3d2tj0cfy38" path="res://New Piskel (25).png" id="6_o6gqa"]
+[ext_resource type="Script" path="res://bricks_anim.gd" id="6_vwgvm"]
+[ext_resource type="Texture2D" uid="uid://dbrajm7eyympj" path="res://New Piskel (19).png" id="7_edmgh"]
+[ext_resource type="Script" path="res://steel_anim.gd" id="7_evg0e"]
+[ext_resource type="Texture2D" uid="uid://tvgq3m1bxwbu" path="res://New Piskel (22).png" id="8_isugd"]
+[ext_resource type="Texture2D" uid="uid://cwt1rggmgfwei" path="res://bow_and_arrow.png" id="11_eygne"]
+
+[sub_resource type="Animation" id="Animation_fvfww"]
+resource_name = "invisible"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_o45px"]
+resource_name = "toggle_vis"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wyr3t"]
+_data = {
+"invisible": SubResource("Animation_fvfww"),
+"toggle_vis": SubResource("Animation_o45px")
+}
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_tac5l")
+
+[node name="coin_counter" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="coin_counter"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 5.599
+anchor_top = 1.925
+anchor_right = 6.381
+anchor_bottom = 3.365
+offset_left = 102.04
+offset_right = 80.7599
+offset_bottom = -24.6
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.01747, 1.03923)
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="coin_counter/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+text = "0"
+
+[node name="TextureRect" type="TextureRect" parent="coin_counter/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="coin_counter/VBoxContainer/TextureRect"]
+position = Vector2(5.99997, 23)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("2_ykbxr")
+vframes = 2
+
+[node name="wood counter" type="Control" parent="."]
+layout_mode = 3
+anchor_top = -0.002
+anchor_bottom = -0.002
+offset_left = 4.0
+offset_top = 0.296
+offset_right = 40.0
+offset_bottom = 41.296
+
+[node name="VBoxContainer" type="VBoxContainer" parent="wood counter"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 10.5844
+anchor_top = 2.08195
+anchor_right = 11.6944
+anchor_bottom = 2.90244
+offset_left = 4.95999
+offset_top = -6.36
+offset_right = -3.05176e-05
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="wood counter/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+text = "0"
+
+[node name="TextureRect" type="TextureRect" parent="wood counter/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="wood counter/VBoxContainer/TextureRect"]
+position = Vector2(8, 17)
+scale = Vector2(3.316, 3)
+texture = ExtResource("3_tk2lj")
+hframes = 2
+vframes = 2
+
+[node name="seleted3" type="Sprite2D" parent="wood counter/VBoxContainer/TextureRect"]
+position = Vector2(8.50162, 17.1875)
+scale = Vector2(1.71875, 1.55078)
+texture = ExtResource("6_bmwlx")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="wood counter/VBoxContainer/TextureRect/seleted3"]
+libraries = {
+"": SubResource("AnimationLibrary_wyr3t")
+}
+script = ExtResource("5_eix08")
+
+[node name="brick counter" type="Control" parent="."]
+layout_mode = 3
+anchor_top = -0.002
+anchor_bottom = -0.002
+offset_left = 4.0
+offset_top = 0.296
+offset_right = 40.0
+offset_bottom = 41.296
+
+[node name="VBoxContainer" type="VBoxContainer" parent="brick counter"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 12.3622
+anchor_top = 2.03317
+anchor_right = 13.4722
+anchor_bottom = 2.82927
+offset_left = 4.95999
+offset_top = -6.36
+offset_right = -3.05176e-05
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="brick counter/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+text = "0"
+
+[node name="TextureRect" type="TextureRect" parent="brick counter/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="brick counter/VBoxContainer/TextureRect"]
+position = Vector2(11.2364, 19)
+scale = Vector2(3.34555, 3)
+texture = ExtResource("4_gankk")
+hframes = 2
+vframes = 2
+
+[node name="seleted2" type="Sprite2D" parent="brick counter/VBoxContainer/TextureRect"]
+position = Vector2(11.0008, 19.375)
+scale = Vector2(1.6875, 1.60156)
+texture = ExtResource("6_bmwlx")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="brick counter/VBoxContainer/TextureRect/seleted2"]
+libraries = {
+"": SubResource("AnimationLibrary_wyr3t")
+}
+script = ExtResource("6_vwgvm")
+
+[node name="steel counter" type="Control" parent="."]
+layout_mode = 3
+anchor_top = -0.002
+anchor_bottom = -0.002
+offset_left = 4.0
+offset_top = 0.296
+offset_right = 40.0
+offset_bottom = 41.296
+
+[node name="VBoxContainer" type="VBoxContainer" parent="steel counter"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 14.14
+anchor_top = 2.03317
+anchor_right = 14.6667
+anchor_bottom = 2.82927
+offset_left = 4.95999
+offset_top = -6.36
+offset_right = -3.05176e-05
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="steel counter/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+text = "0"
+
+[node name="TextureRect" type="TextureRect" parent="steel counter/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="steel counter/VBoxContainer/TextureRect"]
+position = Vector2(10, 19)
+scale = Vector2(3, 3)
+texture = ExtResource("5_6x42r")
+hframes = 2
+vframes = 2
+
+[node name="seleted" type="Sprite2D" parent="steel counter/VBoxContainer/TextureRect"]
+position = Vector2(10, 19)
+scale = Vector2(1.53125, 1.59375)
+texture = ExtResource("6_bmwlx")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="steel counter/VBoxContainer/TextureRect/seleted"]
+libraries = {
+"": SubResource("AnimationLibrary_wyr3t")
+}
+script = ExtResource("7_evg0e")
+
+[node name="diamonds" type="Control" parent="."]
+layout_mode = 3
+anchor_top = -0.002
+offset_left = 4.0
+offset_top = 0.296
+offset_right = 40.0
+offset_bottom = 39.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="diamonds"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 15.75
+anchor_top = 2.084
+anchor_right = 16.458
+anchor_bottom = 3.458
+offset_left = -6.10352e-05
+offset_top = -6.36
+offset_right = 25.5121
+offset_bottom = 10.68
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="diamonds/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+text = "0"
+
+[node name="TextureRect" type="TextureRect" parent="diamonds/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="diamonds/VBoxContainer/TextureRect"]
+position = Vector2(5, 18)
+texture = ExtResource("6_o6gqa")
+
+[node name="arrows" type="Control" parent="."]
+layout_mode = 3
+anchor_top = -0.002
+offset_left = 4.0
+offset_top = 0.296
+offset_right = 40.0
+offset_bottom = 39.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="arrows"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 16.9444
+anchor_top = 2.109
+anchor_right = 17.6524
+anchor_bottom = 3.483
+offset_left = -6.10352e-05
+offset_top = -6.36
+offset_right = 25.5121
+offset_bottom = 10.68
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="arrows/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+text = "0"
+
+[node name="TextureRect" type="TextureRect" parent="arrows/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="arrows/VBoxContainer/TextureRect"]
+position = Vector2(5, 18)
+rotation = -0.760964
+scale = Vector2(1.7, 1.7)
+texture = ExtResource("11_eygne")
+hframes = 3
+vframes = 4
+frame = 9
+
+[node name="health" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="health"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.225
+anchor_bottom = 1.15
+offset_left = 301.0
+offset_top = 47.0
+offset_right = 301.0
+offset_bottom = 47.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(9.67091, 10.7141)
+value = 20.0
+texture_under = ExtResource("6_3lkyh")
+texture_over = ExtResource("7_edmgh")
+texture_progress = ExtResource("8_isugd")

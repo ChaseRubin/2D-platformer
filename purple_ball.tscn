@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://da5xxpcksetgi"]
+
+[ext_resource type="Script" path="res://purple_ball.gd" id="1_6tbc7"]
+[ext_resource type="Texture2D" uid="uid://r0rtitgurk4q" path="res://New Piskel (32).png" id="2_unsvt"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dgink"]
+radius = 13.0384
+
+[node name="purple_ball" type="Area2D"]
+scale = Vector2(0.15, 0.15)
+collision_layer = 32768
+collision_mask = 32768
+script = ExtResource("1_6tbc7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_unsvt")
+hframes = 2
+vframes = 2
+frame = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_dgink")
+
+[node name="life_span" type="Timer" parent="."]
+wait_time = 4.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="life_span" to="." method="_on_life_span_timeout"]

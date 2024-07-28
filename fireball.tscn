@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://d23lsubu0ieck"]
+
+[ext_resource type="Script" path="res://fireball.gd" id="1_ccrm0"]
+[ext_resource type="Texture2D" uid="uid://coda3jaf3u1rd" path="res://New Piskel (1).png" id="2_evnwv"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_r856v"]
+radius = 5.0
+height = 18.0
+
+[node name="fireball" type="Area2D"]
+scale = Vector2(0.2, 0.2)
+script = ExtResource("1_ccrm0")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-5, -6)
+rotation = 3.14159
+scale = Vector2(2, 2)
+texture = ExtResource("2_evnwv")
+vframes = 2
+frame = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 1)
+rotation = 1.5708
+scale = Vector2(2, 2)
+shape = SubResource("CapsuleShape2D_r856v")
+
+[node name="life_span" type="Timer" parent="."]
+wait_time = 0.5
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="life_span" to="." method="_on_life_span_timeout"]
